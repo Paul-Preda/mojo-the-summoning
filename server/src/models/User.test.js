@@ -1,5 +1,5 @@
 const { describe, it, expect, beforeAll, afterAll } = require('@jest/globals')
-const { User } = require('.')
+const { User } = require('./User')
 const db = require('../db/config')
 // define in global scope
 let user
@@ -36,9 +36,9 @@ describe('User', () => {
 })
 // clear db after tests
 afterAll(async () => await db.sync({ force: true }))
-// check that the username  has been defines 
+// check that the username has been defined
 describe('User', () => {
-  it('check that the username  has been defines ', async () => {
+  it('check that the username has been defined ', async () => {
     expect(user.username).toBeDefined();
   })
  
