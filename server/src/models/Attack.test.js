@@ -1,97 +1,123 @@
 const { describe, it, expect, beforeAll, afterAll } = require('@jest/globals')
-const { Deck, Attack } = require('../models')
-const { sequelize } = require('../db/config')
-
+const { Attack } = require('.')
+const {sequelize} = require('../db/config')
 // define in global scope
-let deck
-
-// clear the database and create new Deck before tests
+let attack
+// clear the database and create new attack before tests
 beforeAll(async () => {
   await sequelize.sync({ force: true })
-  deck = await Deck.create({
-    name: 'Tdeckname',
-    xp: 100
-  })
+  attack = await Attack.create({ 
+    title: 'Tattacktitle',
+    mojoCost: 4,
+    staminaCost: 9
+    })
 })
-
-
-/*
-   TEST TO COMPARE RECURSIVELY ALL PROPERTIES OF OBJECT INSTANCES AKA
-   CHECKING FOR DEEP EQUALITY
-*/
-
-
-//creating two objects to compare whether they have the same values with toEqual
-let deck1 = new Deck({
-  name: "Testdeckname",
-  xp: 55
-})
-
-let deck2 = new Deck({
-  name: "Testdeckname",
-  xp: 55
-})
-
-describe('comparing objects deck1 and deck2 that are identical', () => {
-  test('have all the same properties', () => {
-    expect(deck1).toEqual(deck2);
-  });
-  test('are not the exact same', () => {
-    expect(deck1).not.toBe(deck2);
-  });
-});
-
 /*
     TESTS CHECKING IF MODEL HAS ALL OF ITS PROPERTIES
 */
-
 // clear the database after tests
 afterAll(async () => await sequelize.sync({ force: true }))
 // checks if the model has the property of id 
-describe('deck', () => {
+describe('attack', () => {
   it('has an id', async () => {
-    expect(deck).toHaveProperty('id')
-  })
+    expect(attack).toHaveProperty('id')
+  }) 
 })
-
+  
 // clear the database after tests
 afterAll(async () => await sequelize.sync({ force: true }))
-// checks if the model has the property of name 
-describe('deck', () => {
-  it('has name', async () => {
-    expect(deck).toHaveProperty('name')
-  })
+// checks if the model has the title  property
+describe('attack', () => {
+  it('has a title porperty', async () => {
+    expect(attack).toHaveProperty('title')
+  }) 
 })
-
-
 // clear the database after tests
 afterAll(async () => await sequelize.sync({ force: true }))
-// checks if the model has the property of xp 
-describe('deck', () => {
-  it('has xp', async () => {
-    expect(deck).toHaveProperty('xp')
-  })
+// checks if the model has the mojoCost property
+describe('attack', () => {
+  it('has a mojoCost porperty', async () => {
+    expect(attack).toHaveProperty('mojoCost')
+  }) 
 })
-
-
-/* 
-    TESTING name PROPERTY
+// clear the database after tests
+afterAll(async () => await sequelize.sync({ force: true }))
+// checks if the model has the staminaCost property
+describe('attack', () => {
+  it('has a staminaCost porperty', async () => {
+    expect(attack).toHaveProperty('staminaCost')
+  }) 
+})
+  
+/*
+   TESTING THE title PROPERTY
 */
-
-//clear the database after tests
+ 
+// clear the database after tests
 afterAll(async () => await sequelize.sync({ force: true }))
-// checks if the name property has been defined
-describe('deck', () => {
-  it('name property has been defined', async () => {
-    expect(deck.name).toBeDefined();
-  })
+// check that the title of the created attack is actually Tattacktitle
+describe('attack', () => {
+    it('checks if the attacks title actually says Tattacktitle', async () => {
+        expect(attack.title).toBe('Tattacktitle')
+    }) 
 })
-
-// clear sequelize after tests
+  
+// clear the database after tests
+afterAll(async () => await sequelize.sync({ force: true })) 
+// check that the title Tattacktitle has the length of 12
+describe('attack', () => {
+    it('checks the length of title Tattacktitle is 12', async () => {
+        expect(attack.title).toHaveLength(12)
+    }) 
+})
+  
+// clear the database after tests
+afterAll(async () => await sequelize.sync({ force: true })) 
+// check that the title has been defined
+describe('attack', () => {
+    it('check that the title has been defined', async () => {
+        expect(attack.title).toBeDefined();
+    }) 
+})
+/*
+  TESTING THE mojoCost PROPERTY
+*/ 
+// clear the database after tests
 afterAll(async () => await sequelize.sync({ force: true }))
-// check that the name of the created deck is actually Tdeckname
-describe('User', () => {
-  it('checks if name actually says Tdeckname', async () => {
-    expect(attack.name).toBe('Tdeckname')
-  })
+// check that the mojoCost of the created attack is actually 4
+describe('attack', () => {
+    it('checks if the mojoCost actually says 4', async () => {
+        expect(attack.mojoCost).toBe(4)
+    }) 
+})
+// clear the database after tests
+afterAll(async () => await sequelize.sync({ force: true })) 
+// check that the mojoCost has been defined
+describe('attack', () => {
+    it('check that the mojoCost has been defined', async () => {
+        expect(attack.mojoCost).toBeDefined();
+    }) 
+})
+ 
+/*
+  TESTING THE staminaCost PROPERTY
+*/
+ 
+// clear the database after tests
+afterAll(async () => await sequelize.sync({ force: true }))
+// check that the staminaCost of the created attack is actually 9
+describe('attack', () => {
+    it('checks if the staminaCost actually says 9', async () => {
+        expect(attack.staminaCost).toBe(9)
+    }) 
+})
+  
+ 
+// clear the database after tests
+afterAll(async () => await sequelize.sync({ force: true })) 
+// check that the staminaCost has been defined
+describe('attack', () => {
+    it('check that the staminaCost has been defined', async () => {
+        expect(attack.staminaCost).toBeDefined();
+    }) 
 })
