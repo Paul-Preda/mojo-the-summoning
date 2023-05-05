@@ -8,10 +8,10 @@ const { Attack } = require('./Attack')
 User.hasOne(Deck, { through: "user-deck" })
 Deck.belongsTo(User, { through: "user-deck" })
 
-Deck.hasMany(Card, { through: "deck-cards" })
+Deck.belongsToMany(Card, { through: "deck-cards" })
 Card.belongsTo(Deck, { through: "deck-cards" })
 
-Card.hasMany(Attack, { through: "card-attack" })
+Card.belongsToMany(Attack, { through: "card-attack" })
 Attack.belongsToMany(Card, { through: "card-attack" })
 
 //set up the associations here
