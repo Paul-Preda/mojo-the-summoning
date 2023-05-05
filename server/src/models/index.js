@@ -5,14 +5,14 @@ const { Attack } = require('./Attack')
 
 // import the rest of your models above
 
-User.hasOne(Deck, { through: "Player" })
-Deck.belongsTo(User, { through: "Player" })
+User.hasOne(Deck, { through: "user-deck" })
+Deck.belongsTo(User, { through: "user-deck" })
 
-Deck.belongsToMany(Card, { through: "Deck" })
-Card.belongsTo(Deck, { through: "Deck" })
+Deck.hasMany(Card, { through: "deck-cards" })
+Card.belongsTo(Deck, { through: "deck-cards" })
 
-Card.belongsToMany(Attack, { through: "Card" })
-Attack.belongsToMany(Card, { through: "Card" })
+Card.hasMany(Attack, { through: "card-attack" })
+Attack.belongsToMany(Card, { through: "card-attack" })
 
 //set up the associations here
 
