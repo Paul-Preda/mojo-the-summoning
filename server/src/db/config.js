@@ -1,10 +1,10 @@
 // add your database connection here
-let path = require("path");
 let Sequelize = require("sequelize")
 
 let sequelize = new Sequelize({
     dialect: "sqlite",
-    storage: (__dirname,'db.sqlite')
+    storage: (__dirname,'db.sqlite'),
+    logging: false
 })
 
 module.exports = { sequelize }

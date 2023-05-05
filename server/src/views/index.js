@@ -13,5 +13,4 @@ Card.belongsTo(Deck)
 Card.hasMany(Attack)
 Attack.belongsToMany(Card)
 
-
 module.exports = { user, card, deck, attack }
