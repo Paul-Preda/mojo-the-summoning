@@ -1,5 +1,5 @@
 const { describe, it, expect, beforeAll, afterAll } = require('@jest/globals')
-const { Attack } = require('.')
+const { Attack } = require('../models')
 const {sequelize} = require('../db/config')
 // define in global scope
 let attack
